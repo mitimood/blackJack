@@ -45,18 +45,18 @@ export default function Home(props) {
         
         }, 1000);
         return () => clearInterval(interval);
-        
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
 
     const fetchNovaCarta = async () => {
-        const req = await fetch('http://localhost:3000/api/pegaValorCarta');
+        const req = await fetch(process.env.SERVER_ADRESS + 'api/pegaValorCarta');
 
         const newData = await req.json();
         const valor = newData.valor
 
-        await fetch(`http://localhost:3000/api/updateValue?value=${valor}&userId=${userId}`);
+        await fetch(process.env.SERVER_ADRESS + `/api/updateValue?value=${valor}&userId=${userId}`);
 
 
         setValorUsuario(valorUsuario + newData.valor)
