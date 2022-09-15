@@ -19,14 +19,11 @@ export default function Home(props) {
     const [valorCartaStr, setValorCartaStr] = useState("0")
 
     
-    const [valorUsuario, setValorUsuario] = useState(0)
+    const [valorUsuario, setValorUsuario] = useState(points)
 
     const [timer, setTimer] = useState('')
 
     // atualiza o valor da pontuaçao de acordo com os registros da db
-    useEffect(() => {
-        setValorUsuario(points)
-      }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -48,6 +45,8 @@ export default function Home(props) {
         
         }, 1000);
         return () => clearInterval(interval);
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
 
@@ -68,8 +67,6 @@ export default function Home(props) {
     };
     
 
-
-
     const novaCarta = (event) => {
         if(valorUsuario > 21) return
 
@@ -84,6 +81,7 @@ export default function Home(props) {
             <h2 className={styles.userName}>{userName}</h2>
             <div className={styles.carta}>
                 <Image className= {styles.Image}
+                alt="carta"
                 objectPosition="center"
                 layout="fill"   
                 objectFit="cover"
