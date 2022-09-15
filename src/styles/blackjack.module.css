@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "black-jack";
+    src: url("../fonts/black-jack.ttf");
+}
+  
+
+.frame{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.carta{
+    height: 450px;
+    width: 300px;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Image{
+    height: 450px;
+    z-index: 0;
+}
+
+.valorCarta{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
+    font-size: 100px;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.botao{
+    border-radius: 10px;
+    border-color: aquamarine;
+    border-style:solid;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+.botao:hover{
+    cursor: pointer;
+
+}
+
+
+.timer{
+    font-family: black-jack;
+
+}

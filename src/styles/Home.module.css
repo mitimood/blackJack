@@ -1,0 +1,32 @@
+.session{
+  margin-top: 10px;
+  margin-bottom:2px;  
+}
+
+.nameCamp{
+  margin: 0px;
+}
+
+.name{
+  margin:2px;
+}
+
+
+.jogar{
+  margin: 10px;
+}
+
+
+.blackJack{
+  letter-spacing: 5px;
+  font-family: black-jack;
+}
+
+
+.form{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
