@@ -51,12 +51,12 @@ export default function Home(props) {
 
 
     const fetchNovaCarta = async () => {
-        const req = await fetch(process.env.SERVER_ADRESS + 'api/pegaValorCarta');
+        const req = await fetch('api/pegaValorCarta');
 
         const newData = await req.json();
         const valor = newData.valor
 
-        await fetch(process.env.SERVER_ADRESS + `/api/updateValue?value=${valor}&userId=${userId}`);
+        await fetch(`/api/updateValue?value=${valor}&userId=${userId}`);
 
 
         setValorUsuario(valorUsuario + newData.valor)
