@@ -4,9 +4,11 @@ import Router from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from '../styles/blackjack.module.css'
 import Cards from "./api/cards.json"
-
+import NProgress from 'nprogress'; //nprogress module
 
 export default function Home(props) {
+
+
     const sessionName = props.user.session.sessionName
     const userName = props.user.session.userName
     const sessionTimer = props.user.session.sessionTimer
@@ -23,6 +25,11 @@ export default function Home(props) {
 
     const [timer, setTimer] = useState('')
 
+    const trickleRate = ((process.env.TIMER_DELAY_MINUTES*60)/10000)
+
+    NProgress.configure({trickleRate: trickleRate, trickleSpeed: 1000})
+
+
     // atualiza o valor da pontuaçao de acordo com os registros da db
 
     useEffect(() => {
@@ -32,6 +39,15 @@ export default function Home(props) {
 
             let minutos = parseInt(timeDifference/(1000*60))
             let segundos = parseInt(timeDifference/(1000))
+
+            let passouMinutos = (((props.minutes * 60) * 1000) - timeDifference) / 1000
+
+            NProgress.set(passouMinutos/300)
+
+
+            if(! NProgress.isStarted()){
+                NProgress.start()
+            }
 
 
             if(timeDifference < 0 ){
@@ -99,11 +115,12 @@ export async function getServerSideProps({query}) {
 
     const cartas = Object.values(Cards)
     const user = await (await fetch(process.env.SERVER_ADRESS + "/api/getUser?userId="+ query.id)).json()
-
+    const minutes = parseInt(process.env.TIMER_DELAY_MINUTES)
     return {
       props: {
         user,
-        cartas
+        cartas,
+        minutes
         }, // will be passed to the page component as props
     }
   }
